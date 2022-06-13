@@ -117,13 +117,13 @@ class FerNNClassifier:
     # double thrP   = *mxGetPr(prhs[3]) * nTREES; ->threshold*nstructs
     # int bootstrap = (int) *mxGetPr(prhs[4]); ->resample
     self.thrP = self.thr_fern * self.nstructs
-    for j in range(resample):
-      for i in range(len(ferns)):
-        if ferns[i][1] == 1:
-          if self.measure_forest(ferns[i][0]) <= self.thrP:
-            self.update(ferns[i][0], 1, 1)
-          elif self.measure_forest(ferns[i][0]) >= self.thrN:
-            self.update(ferns[i][0], 0, 1)
+    # for j in range(resample):
+    for i in range(len(ferns)):
+      if ferns[i][1] == 1:
+        if self.measure_forest(ferns[i][0]) <= self.thrP:
+          self.update(ferns[i][0], 1, 1)
+        elif self.measure_forest(ferns[i][0]) >= self.thrN:
+          self.update(ferns[i][0], 0, 1)
 
   def update(self, fern, C, N):
     # const vector<int>& fern, int C, int N
