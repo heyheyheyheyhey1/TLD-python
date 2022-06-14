@@ -33,13 +33,13 @@ class FerNNClassifier:
 
   def _read(self, file):
     # Classifier Parameters
-    self.valid = file["valid"]
-    self.ncc_thesame = file["ncc_thesame"]
-    self.nstructs = file["num_trees"]
-    self.structSize = file["num_features"]
-    self.thr_fern = file["thr_fern"]
-    self.thr_nn = file["thr_nn"]
-    self.thr_nn_valid = file["thr_nn_valid"]
+    self.valid = float(file["valid"])
+    self.ncc_thesame = float(file["ncc_thesame"])
+    self.nstructs = int(file["num_trees"])
+    self.structSize = int(file["num_features"])
+    self.thr_fern = float(file["thr_fern"])
+    self.thr_nn = float(file["thr_nn"])
+    self.thr_nn_valid = float(file["thr_nn_valid"])
 
   def getNumStructs(self):
     return self.nstructs
@@ -151,7 +151,6 @@ class FerNNClassifier:
           continue
         # pEx.insert(pEx.begin() + isin[1], nn_examples[i]);
         self.pEx.append(nn_examples[i])
-
       if y[i] == 0 and conf > 0.5:
         self.nEx.append(nn_examples[i])
 

@@ -69,7 +69,7 @@ class RunTld:
     pbox = [0, 0, 0, 0]
     count = 1
     # 进入一个循环,读入新的一帧,然后转换为灰度图像,然后再处理每一帧processFrame
-    while count < len(self.img_lists):
+    while count < len(self.img_lists) and cv2.waitKey(1) != ord('q'):
       # get frame
       img = self.img_lists[count]
       count += 1
@@ -89,15 +89,17 @@ class RunTld:
       # Display
       cv2.imshow("TLD", frame)
       # Swap points and images
-      last_gray, current_gray = swap(last_gray ,current_gray)
+      # last_gray, current_gray = swap(last_gray ,current_gray)
+      last_gray = np.array(current_gray)
       pts1 = []
       pts2 = []
       # pts1.clear()
       # pts2.clear()
       frames += 1
       print("Detection rate: %d/%d" % (detections, frames))
-      if cv2.waitKey(1) == 'q':
-        break
+      # if :
+      #   break
+    print("program exit!")
 
 
 
